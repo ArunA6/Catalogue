@@ -297,19 +297,34 @@
     <br><br>
 </div>
 
-<div class="bg1 img2">
-    <h2 style="text-align: right">Two Player</h2>
-    <p style="text-align: right">Some content<br><br><br><br><br><br><br><br><br><br><br></p>
-    <button class="button"><span>See More </span></button>
-    <br>
-</div>
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
 
-<div class="bg1 img1">
-    <h2 style="text-align: right">Three Player</h2>
-    <p style="text-align: right">Some content<br><br><br><br><br><br><br><br><br><br><br></p>
-    <button class="button"><span>See More </span></button>
-    <br>
-</div>
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}    
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";  
+      }
+      for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";  
+      dots[slideIndex-1].className += " active";
+    }
+</script>
     
 </body>
 </html>
