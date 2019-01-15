@@ -296,94 +296,6 @@
     <button class="btn" style="width: 15%"><span>Game </span></button>
     <br><br>
 </div>
-    
-<br><br><br><br><br><br><br><br>
-    
-<div class="inf">
-    <h2 style="color: blue"><u>History</u></h2>
-    <p style="color: white">The Sonic franchise began in 1991 when the original 'Sonic the Hedgehog', known as 'Sonic 1', was created. Since then, <b>more than 50 sonic games</b> and several animated shows have been created based on the character.</p>
-</div>
-
-<br><br><br>
-
-<div class="imgline">
-    <img src="man_utd.jpg" class="imgs">
-    <img src="man_utd.jpg" class="imgs">
-    <img src="man_utd.jpg" class="imgs">
-</div>
-    
-<br><br><br>
-    
-<div class="inf">
-    <h2 style="color: blue"><u>About the Game</u></h2>
-    <p style="color: white">This game was inspired by Sonic games and the general 2D platformer format. Players aim to defeat waves of enemies from a range of platoformer games and reach achieve maximal scores. Along the way, the gamer accumalates points which can be used to upgrade their selected character in between attempts. This entire game was coded using Java, extending JFrame methods and implementing the KeyListener interface.</p>
-    <br>
-    <a href="https://github.com/ArunA6/Year10cs"><button class="button"><span>GitHub </span></button></a>
-</div>
-
-<br><br><br><br><br>
-
-    
-<div class="slideshow-container">
-
-    <div class="mySlides fade">
-      <div class="numbertext">1 / 3</div>
-      <img src="spiderman_copy.jpg" style="width:100%">
-      <div class="text">Image One</div>
-    </div>
-
-    <div class="mySlides fade">
-      <div class="numbertext">2 / 3</div>
-      <img src="spiderman_copy.jpg" style="width:100%">
-      <div class="text">Image Two</div>
-    </div>
-
-    <div class="mySlides fade">
-      <div class="numbertext">3 / 3</div>
-      <img src="spiderman_copy.jpg" style="width:100%">
-      <div class="text">Image Three</div>
-    </div>
-
-    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-</div>
-<br>
-
-<div style="text-align:center">
-  <span class="dot" onclick="currentSlide(1)"></span> 
-  <span class="dot" onclick="currentSlide(2)"></span> 
-  <span class="dot" onclick="currentSlide(3)"></span> 
-</div>
-    
-    
-<br><br><br><br><br><br><br><br><br><br>
-    
-<div class="inf">
-    <img src="standing.png" style="width: 40%; float: right">
-    <h2 style="color: blue; text-align: center; padding-bottom: 25px"><u>Controls</u></h2>
-    <ul style="font-size: 35px;">
-        <li>Right = Right Arrow</li>
-        <li>Left = Left Arrow</li>
-        <li>Jump = Up Arrow</li>
-        <li>Shoot = Release Spacebar</li>
-        <li>Charge-up Shot = Hold Spacebar</li>
-        <li>Roll = 'R'</li>
-    </ul>
-</div>
-    
-<br><br><br><br><br><br><br>
-    
-<img style="width: 100%; padding: 15px 0px" src="sonicbg2.jpg">
-
-<br><br><br><br><br><br><br><br><br><br>
-    
-<div class="bg1 img3">
-    <h2 style="text-align: right">Single Player</h2>
-    <p style="text-align: right">Some content<br><br><br><br><br><br><br><br><br><br><br></p>
-    <button class="button"><span>See More </span></button>
-    <br>
-</div>  
 
 <div class="bg1 img2">
     <h2 style="text-align: right">Two Player</h2>
@@ -398,37 +310,6 @@
     <button class="button"><span>See More </span></button>
     <br>
 </div>
-
-<br><br><br>
-
-<script>
-    var slideIndex = 1;
-    showSlides(slideIndex);
-
-    function plusSlides(n) {
-      showSlides(slideIndex += n);
-    }
-
-    function currentSlide(n) {
-      showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-      var i;
-      var slides = document.getElementsByClassName("mySlides");
-      var dots = document.getElementsByClassName("dot");
-      if (n > slides.length) {slideIndex = 1}    
-      if (n < 1) {slideIndex = slides.length}
-      for (i = 0; i < slides.length; i++) {
-          slides[i].style.display = "none";  
-      }
-      for (i = 0; i < dots.length; i++) {
-          dots[i].className = dots[i].className.replace(" active", "");
-      }
-      slides[slideIndex-1].style.display = "block";  
-      dots[slideIndex-1].className += " active";
-    }
-</script>
     
 </body>
 </html>
