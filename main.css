@@ -323,12 +323,13 @@ img {vertical-align: middle;}
 
 td{
    padding: 10px;
+    font-size: 25px;
     font-family: Times New Roman;
 }
 
 th{
     padding: 15px;
-    font-size: 30px;
+    font-size: 40px;
     font-family: cursive;
 }
 
@@ -339,10 +340,12 @@ td:hover{
 
 .pt{
     color: white;
-    font-size: 40;
+    font-size: 30px;
     font-family: Times New Roman, cursive;
     width: 90%;
     text-align: left;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .arw{
