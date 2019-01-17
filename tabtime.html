@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="main.css">
+    </head>
+    <body>
+        <h1 class="ttt">Tables of Time</h1>
+        <center><button class="tbtn" onclick="show(0)">Timline</button></center>
+        
+        <div id="t0" style="display: none; margin-left: 5%; border-right: 1px solid white" class="pt">
+            <h2><u>Timeline:</u></h2>
+            <img src="downarrow.png" style="float: right" class="arw">
+            <h3><b>1989</b> - Time Berners-Lee invents the WWW & HTML</h3>
+            <br>
+            <img src="www.jpg" style="width: 50%">
+            
+            <br><br><br><br>
+            <h3><b>1995</b> - Brenden Eich invents JavaScript</h3>
+            <br>
+            <img src="js.png" style="width: 50%">
+            
+            <br><br><br><br>
+            <h3><b>1996</b> - Håkon Wium Lie invents CSS</h3>
+            <br>
+            <img src="css-art.jpg" style="width: 50%">
+            <br><br><br><br>
+        </div>
+        <br><br>
+        
+        <table class="tt" border="1">
+            <th><b>Inventer</b></th><th><b>Technology</b></th>
+          <tr>
+              <td onclick="show(1)">Tim Berners-Lee</td><td onclick="show(2)">WWW & HTML</td>
+          </tr>
+          <tr>
+             <td onclick="show(3)">Håkon Wium Lie</td><td onclick="show(4)">CSS</td>
+          </tr>
+          <tr>
+             <td onclick="show(5)">Brenden Eich</td><td onclick="show(6)">Javascript</td>
+          </tr>
+        </table>
+        
+        <div id="t1" style="display: none" class="pt">
+            <h2 style="text-align: center">Tim Berners-Lee</h2>
+            <img src="timberners.jpg" style="width: 30%; float: right; padding-left: 5%">
+            <ul>
+                <li>Full Name: Timothy John Berners-Lee</li>
+                <li>Born on June 8, 1955</li>
+                <li>Occupation: Professor of Computer Science at Oxford & MIT</li>
+                <li>Spouse: Rosemary Leith</li>
+                <li>Known For: HTML & WWW</li>
+                <li>Nationality: British</li>
+            </ul>
+        </div>
+        
+        <div id="t2" style="display: none" class="pt">
+            <h2 style="text-align: center">HTML & WWW</h2>
+            <img src="web.jpeg" style="width: 45%; float: right; padding-left: 5%">
+            <ul>
+                <li>HTML = "Hypertext Markup Language"</li>
+                <li>WWW = "World Wide Web"</li>
+                <li>Made in 1989 by Tim Berners-Lee</li>
+                <li>Released to Public in August 1991</li>
+                <li>Basis for Billions of Webpages</li>
+            </ul>
+        </div>
+        
+        <div id="t3" style="display: none" class="pt">
+            <h2 style="text-align: center">Håkon Wium Lie</h2>
+            <img src="hakon.jpg" style="width: 30%; float: right; padding-left: 5%">
+            <ul>
+                <li>Full Name: Håkon Wium Lie</li>
+                <li>Born: July 27, 1965</li>
+                <li>Education: PhD from University of Oslo</li>
+                <li>Known For: Cascading Style Sheets</li>
+                <li>Nationality: Norweigan</li>
+            </ul>
+        </div>
+        
+        <div id="t4" style="display: none" class="pt">
+            <h2 style="text-align: center">CSS</h2>
+            <img src="css.jpeg" style="width: 40%; float: right; padding-left: 5%">
+            <ul>
+                <li>CSS = Cascading Style Sheets</li>
+                <li>Used alongside HTML to style websites</li>
+                <li>Made in 1996 by Håkon Wium Lie</li>
+                <li>First used in browser in 2000</li>
+            </ul>
+        </div>
+        
+        <div id="t5" style="display: none" class="pt">
+            <h2 style="text-align: center">Brenden Eich</h2>
+            <img src="eich.jpg" style="width: 30%; float: right; padding-left: 5%">
+            <ul>
+                <li>Full Name: Brendan Eich</li>
+                <li>Born: July 27, 1965</li>
+                <li>Education: BSE - Santa Clara University, Master's - University of Illinois</li>
+                <li>Occupation: CEO of Brave Software</li>
+                <li>Known For: JavaScript</li>
+                <li>Nationality: American</li>
+            </ul>
+        </div>
+        
+        <div id="t6" style="display: none" class="pt">
+            <h2 style="text-align: center">JavaScript</h2>
+            <img src="js.png" style="width: 40%; float: right; padding-left: 5%">
+            <ul>
+                <li>JS = JavaScript</li>
+                <li>Compatible with HTML & CSS</li>
+                <li>Interpreted Programming Language</li>
+                <li>Prototype made in May, 1995 by Brendan Eich</li>
+                <li>Deployed made in December, 1995</li>
+            </ul>
+        </div>
+        
+        <br><br><br><br><br><br>
+        
+        <center><img src="trio.png"></center>
+        
+        <br><br>
+    </body>
+    
+    <script>
+        function show(n){
+            var inf = document.getElementById("t"+n);
+            if (n!="1"){
+                var a = document.getElementById("t1");
+                a.style.display = "none";
+            }if (n!="2"){
+                var a = document.getElementById("t2");
+                a.style.display = "none";
+            }if (n!="3"){
+                var a = document.getElementById("t3");
+                a.style.display = "none";
+            }if (n!="4"){
+                var a = document.getElementById("t4");
+                a.style.display = "none";
+            }if (n!="5"){
+                var a = document.getElementById("t5");
+                a.style.display = "none";
+            }if (n!="6"){
+                var a = document.getElementById("t6");
+                a.style.display = "none";
+            }
+            if (inf.style.display === "none"){
+                inf.style.display = "block";
+            }
+            else{
+                inf.style.display = "none";
+            }
+        }
+    </script>
+
+</html>
