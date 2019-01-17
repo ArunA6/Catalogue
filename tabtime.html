@@ -115,7 +115,7 @@
         
         <br><br><br><br><br><br>
         
-        <center><img src="trio.png"></center>
+        <center><img src="trio.png" id="tri"></center>
         
         <br><br>
     </body>
@@ -123,6 +123,15 @@
     <script>
         function show(n){
             var inf = document.getElementById("t"+n);
+            var arrow = document.getElementById("tri");
+            if (inf.style.display === "none"){
+                inf.style.display = "block";
+                arrow.style.display = "none";
+            }
+            else{
+                inf.style.display = "none";
+                arrow.style.display = "block";
+            }
             if (n!="1"){
                 var a = document.getElementById("t1");
                 a.style.display = "none";
@@ -141,12 +150,6 @@
             }if (n!="6"){
                 var a = document.getElementById("t6");
                 a.style.display = "none";
-            }
-            if (inf.style.display === "none"){
-                inf.style.display = "block";
-            }
-            else{
-                inf.style.display = "none";
             }
         }
     </script>
