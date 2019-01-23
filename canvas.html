@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <style>
+            h1{
+                font-family: cursive;
+                font-size: 50;
+                margin-top: 10px;
+                text-align: center;
+                color: white;
+            }
+        </style>
+    </head>
+    
+    <body>
+        
+        
+        <h1>Web Game</h1>
+        
+        <img src="downarrow.png" style="float: right; width: 7%" class="arw">
+        
+        <img src="downarrow.png" style="float: left; width: 7%" class="arw">
+        
+        <center><button onclick="startGame()" id="startb">Start</button></center>
+        
+        <h1 id="over"></h1>
+        
+        <center><canvas id="myCanvas" width="600" height="650" style="border:1px solid #FFFFFF;">
+            Your browser does not support the HTML5 canvas tag.
+            </canvas></center>
+        
+        <br>
+        
+        <h1 id="score"></h1>
+        
+        <img id="img1" src="rainbowbg.jpg" style="display: none">
+        
+        
+        
+        <script>
+            var canvas = document.getElementById("myCanvas");
+            var btn = document.getElementById("startb");
+            var ctx = canvas.getContext("2d");
+            ctx.fillStyle = "#000000";
+            ctx.font = "30px Arial";
+            var sD = document.getElementById("score");
+            var gO = document.getElementById("over");
+            //var bgSound = new sound("bg.mp3");
+            var endSound = new sound("clang.mp3");
+            
+            
+            function startGame(){
+                if (btn.innerHTML == "Start"){
+                    ctx.drawImage(img1, 0, 0);
+                    var a = setInterval(fall, 20);
+                    var b = setInterval(addObstacle, 700-score/10);
+                    var c = setInterval(scorePlus, 500);
+                    btn.innerHTML="Restart"
+                    //bgSound.play();
+                }
+                else{
+                    obstacleX = [];
+                    obstacleY = [];
+                    crash = false;
+                    score = 0;
+                    sX = 6;
+                    sY = 6;
+                    sFall = 1.5;
+                    sAccel = 0;
+                    w = 600;
+                    h = 750;
+                    rW = 25;
+                    rH = 25;
+                    oW = 35;
+                    oH = 35;
+                    cX = 300;
+                    cY = 300;
+                    cR = 15;
+                    ctx.font = "30px Arial";
+                    gO.innerHTML = "";
+                }
+            }
+            /*window.onload = function(){
+                ctx.drawImage(img1, 0, 0);
+                var a = setInterval(fall, 20);
+                var b = setInterval(addObstacle, 700-score/10);
+                var c = setInterval(scorePlus, 500);
+                //bgSound.play();
+            };*/
+            window.onkeydown = function(e) {
+               if (!crash){
+                   var key = e.keyCode ? e.keyCode : e.which;
+                   if (key == 39) {
+                        cX += sX;
+                       if (cX>w-rW){
+                           cX = w - rW;
+                       }
+                   }else if (key == 37) {
+                       cX -= sX;
+                       if (cX<0){
+                           cX = 0;
+                       }
+                   }else if (key == 38) {
+                       cY -= sY;
+                       if (cY<0){
+                           cY = 0;
+                       }
+                   }else if (key == 40) {
+                       cY += sY;
+                       if (cY>h-rH){
+                           cY = h - rH;
+                       }
+                    }
+                    clearMove();
+                    showScore();
+                    ctx.fillStyle = "#000000";
+               }
+            };
+            function fall(){
+                clearFall();
+                ctx.fillStyle = "#FF0000";
+                for (i=0; i<obstacleX.length; i+=1){
+                    obstacleY[i] = obstacleY[i] + sFall;
+                    contact(i);
+                    if (!crash){
+                        ctx.fillRect(obstacleX[i], obstacleY[i], oW, oH);
+                    }
+                }
+                showScore();
+            }
+            function addObstacle(){
+                var xNew = Math.random()*(600-oW);
+                var yNew = -100
+                obstacleX.push(xNew);
+                obstacleY.push(yNew);
+            }
+            function contact(n){
+                if (cX>obstacleX[n]-10 && cX<obstacleX[n] + oW + 10){
+                    if (cY>obstacleY[n]-10 && cY<obstacleY[n] + oH + 10){
+                        endSound.play();
+                        //sD.innerHTML = "Score: " + score;
+                        gO.innerHTML = "Game Over! Score: " + score;
+                        //bgSound.stop();
+                        ctx.clearRect(0, 0, w, h);
+                        ctx.drawImage(img1, 0, 0);
+                        crash = true;
+                        clearInterval(a);
+                        clearInterval(b);
+                        clearInterval(c);
+                    }
+                }
+            }
+            function clearMove(){
+                ctx.clearRect(0, 0, w, h);
+                ctx.fillStyle = "#000000";
+                ctx.drawImage(img1, 0, 0);
+                circ();
+                //ctx.fillRect(cX, cY, rW, rH);
+                ctx.fillStyle = "#FF0000";
+                for (i=0; i<obstacleX.length; i+=1){
+                    ctx.fillRect(obstacleX[i], obstacleY[i], oW, oH);
+                }
+            }
+            function clearFall(){
+                ctx.fillStyle = "#000000";
+                ctx.clearRect(0, 0, w, h);
+                ctx.drawImage(img1, 0, 0);
+                circ();
+                //ctx.fillRect(cX, cY, rW, rH);
+            }
+            function scorePlus(){
+                if (!crash){
+                    score+=1;
+                }
+            }
+            function showScore(){
+                ctx.fillStyle = "#FFFFFF";
+                if (!crash){
+                    ctx.fillText("Score: " + score, 20, 40);
+                }
+                else{
+                    ctx.fillStyle = "#000000";
+                    ctx.font = "50px Arial"
+                    ctx.fillText("Score: " + score, 200, 400);
+                    showScore();
+                }
+            }
+            function circ(){
+                ctx.fillStyle = "#000000";
+                ctx.beginPath();
+                ctx.arc(cX, cY, cR, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+            
+            var obstacleX = [];
+            var obstacleY = [];
+            var crash = false;
+            var score = 0;
+            var sX = 6;
+            var sY = 6;
+            var sFall = 1.5;
+            var sAccel = 0;
+            var w = 600;
+            var h = 750;
+            var rW = 25;
+            var rH = 25;
+            var oW = 35;
+            var oH = 35;
+            var cX = 300;
+            var cY = 300;
+            var cR = 15;
+            var img1 = document.getElementById("img1");
+            
+            function sound(src) {
+                this.sound = document.createElement("audio");
+                this.sound.src = src;
+                this.sound.setAttribute("preload", "auto");
+                this.sound.setAttribute("controls", "none");
+                this.sound.style.display = "none";
+                document.body.appendChild(this.sound);
+                this.play = function(){
+                    this.sound.play();
+                }
+                this.stop = function(){
+                    this.sound.pause();
+                }
+            }
+            
+        </script>
+        
+    </body>
+</html>
