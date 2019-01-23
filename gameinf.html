@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="shortcut icon" href="sonicicon.ico">
+</head>
+    
+    
+
+<body>
+    <div class="topnav">
+        <a href="index.html">Home</a>
+        <a href="info.html">Info</a>
+        <a class="active" href="gameinf.html">Game</a>
+        <a href="#more">More</a>
+    </div>
+    
+    <br><br><br><br><br><br>
+    
+    <div class="bg1 img3">
+        <h2 style="text-align: right">Single Player</h2>
+        <p style="text-align: right">Some content<br><br><br><br><br><br><br><br><br><br><br></p>
+        <button class="button" onclick="more1()" id="btn1"><span>See More </span></button>
+        <br>
+    </div>
+    
+    <div class="moreinf" style="display: none" id="more1">
+        <br>
+        <h2 style="color: blue"><u>One Player</u></h2>
+        <p>
+           Testing testing 123
+        </p>
+        <br><br>
+    </div>
+
+    <div class="bg1 img2">
+        <h2 style="text-align: right">Two Player</h2>
+        <p style="text-align: right">Some content<br><br><br><br><br><br><br><br><br><br><br></p>
+        <button class="button" onclick="more2()" id="btn2"><span>See More </span></button>
+        <br>
+    </div>
+    
+    <div class="moreinf" style="display: none" id="more2">
+        <br>
+        <h2 style="color: blue"><u>Two Player</u></h2>
+        <p>
+           Testing testing 123
+        </p>
+        <br><br>
+    </div>
+
+    <div class="bg1 img1">
+        <h2 style="text-align: right">Three Player</h2>
+        <p style="text-align: right">Some content<br><br><br><br><br><br><br><br><br><br><br></p>
+        <button class="button" onclick="more3()" id="btn3"><span>See More </span></button>
+        <br>
+    </div>
+    
+    <div class="moreinf" style="display: none" id="more3">
+        <br>
+        <h2 style="color: blue"><u>Three Player</u></h2>
+        <p>
+           Testing testing 123
+        </p>
+        <br><br>
+    </div>
+    
+    <br><br><br><br><br>
+    
+    <div class="form">
+        <h2 style="color: blue"><u>Login Form</u></h2>
+        <p>Login to play the game.</p>
+
+        <label for="email"><b>Username:</b></label>
+        <input type="text" placeholder="Enter Username" name="usr">
+        <br>
+
+        <label for="psw"><b>Password:</b></label>
+        <input type="password" placeholder="Enter Password" name="psw">
+        <br><br><br>
+
+        <button type="submit" class="btn">Login</button>
+    </div>
+
+<br><br><br><br><br><br><br>
+
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}    
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";  
+      }
+      for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";  
+      dots[slideIndex-1].className += " active";
+    }
+    
+    function more1() {
+      var moreText = document.getElementById("more1");
+      var btnText = document.getElementById("btn1");
+
+      if (moreText.style.display === "none") {
+        btnText.innerHTML = "See Less "; 
+        moreText.style.display = "block";
+      } else {
+        btnText.innerHTML = "See More "; 
+        moreText.style.display = "none";
+      }
+    }
+    function more2() {
+      var moreText = document.getElementById("more2");
+      var btnText = document.getElementById("btn2");
+
+      if (moreText.style.display === "none") {
+        btnText.innerHTML = "See Less "; 
+        moreText.style.display = "block";
+      } else {
+        btnText.innerHTML = "See More "; 
+        moreText.style.display = "none";
+      }
+    }
+    function more3() {
+      var moreText = document.getElementById("more3");
+      var btnText = document.getElementById("btn3");
+
+      if (moreText.style.display === "none") {
+        btnText.innerHTML = "See Less "; 
+        moreText.style.display = "block";
+      } else {
+        btnText.innerHTML = "See More "; 
+        moreText.style.display = "none";
+      }
+    }
+    
+    
+</script>
+    
+</body>
+</html>
