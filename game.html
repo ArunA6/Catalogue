@@ -10,6 +10,11 @@
                 text-align: center;
                 color: white;
             }
+            
+            p{
+                color: white;
+                text-align: center;
+            }
         </style>
     </head>
     
@@ -18,15 +23,17 @@
         
         <h1>Web Game</h1>
         
-        <img src="downarrow.png" style="float: right; width: 7%" class="arw">
+        <img src="downarrow.png" style="float: right; width: 15%" class="arw">
         
-        <img src="downarrow.png" style="float: left; width: 7%" class="arw">
+        <img src="downarrow.png" style="float: left; width: 15%" class="arw">
+        
+        <p id="p"><b>Objective:</b> Avoid the Descending Cubes for As Long as Possible!</p>
         
         <center><button onclick="startGame()" id="startb">Start</button></center>
         
         <h1 id="over"></h1>
         
-        <center><canvas id="myCanvas" width="600" height="650" style="border:1px solid #FFFFFF;">
+        <center><canvas id="myCanvas" width="600" height="650" style="border:2px solid #FFFFFF;">
             Your browser does not support the HTML5 canvas tag.
             </canvas></center>
         
@@ -35,12 +42,14 @@
         <h1 id="score"></h1>
         
         <img id="img1" src="rainbowbg.jpg" style="display: none">
+        <img id="img2" src="warning.png" style="display: none">
         
         
         
         <script>
             var canvas = document.getElementById("myCanvas");
             var btn = document.getElementById("startb");
+            var p = document.getElementById("p");
             var ctx = canvas.getContext("2d");
             ctx.fillStyle = "#000000";
             ctx.font = "30px Arial";
@@ -48,15 +57,39 @@
             var gO = document.getElementById("over");
             //var bgSound = new sound("bg.mp3");
             var endSound = new sound("clang.mp3");
+            var img1 = document.getElementById("img1");
+            var img2 = document.getElementById("img2");
+            
+            
+            var obstacleX = [];
+            var obstacleY = [];
+            var crash = false;
+            var score = 0;
+            var sX = 6;
+            var sY = 6;
+            var sFall = 1;
+            var sAccel = 0;
+            var w = 600;
+            var h = 750;
+            var rW = 25;
+            var rH = 25;
+            var oW = 35;
+            var oH = 35;
+            var cX = 300;
+            var cY = 300;
+            var cR = 15;
+            var phase = 0;
+            var z = 0;
             
             
             function startGame(){
                 if (btn.innerHTML == "Start"){
                     ctx.drawImage(img1, 0, 0);
                     var a = setInterval(fall, 20);
-                    var b = setInterval(addObstacle, 700-score/10);
+                    var b = setInterval(addObstacle, 700);
                     var c = setInterval(scorePlus, 500);
                     btn.innerHTML="Restart"
+                    p.style.display = "none";
                     //bgSound.play();
                 }
                 else{
@@ -77,6 +110,8 @@
                     cX = 300;
                     cY = 300;
                     cR = 15;
+                    z = 0;
+                    phase = 0;
                     ctx.font = "30px Arial";
                     gO.innerHTML = "";
                 }
@@ -114,18 +149,32 @@
                     }
                     clearMove();
                     showScore();
+                    if (score<5 && score%2==0){
+                        ctx.drawImage(img2, 50, 400);
+                    }
                     ctx.fillStyle = "#000000";
                }
             };
             function fall(){
                 clearFall();
-                ctx.fillStyle = "#FF0000";
+                if (phase%3==1){
+                    ctx.fillStyle = "#FF0000";
+                }
+                else if (phase%3==1){
+                    ctx.fillStyle = "#ffe41c";
+                }
+                else{
+                    ctx.fillStyle = "#693a99";
+                }
                 for (i=0; i<obstacleX.length; i+=1){
                     obstacleY[i] = obstacleY[i] + sFall;
                     contact(i);
                     if (!crash){
                         ctx.fillRect(obstacleX[i], obstacleY[i], oW, oH);
                     }
+                }
+                if (score<5 && score%2==0){
+                    ctx.drawImage(img2, 200, 420);
                 }
                 showScore();
             }
@@ -157,7 +206,15 @@
                 ctx.drawImage(img1, 0, 0);
                 circ();
                 //ctx.fillRect(cX, cY, rW, rH);
-                ctx.fillStyle = "#FF0000";
+                if (phase%3==1){
+                    ctx.fillStyle = "#FF0000";
+                }
+                else if (phase%3==1){
+                    ctx.fillStyle = "#ffe41c";
+                }
+                else{
+                    ctx.fillStyle = "#693a99";
+                }
                 for (i=0; i<obstacleX.length; i+=1){
                     ctx.fillRect(obstacleX[i], obstacleY[i], oW, oH);
                 }
@@ -172,12 +229,18 @@
             function scorePlus(){
                 if (!crash){
                     score+=1;
+                    if (z%50==0){
+                        phase+=1;
+                        sFall+=0.8;
+                    }
+                    z+=1;
                 }
             }
             function showScore(){
                 ctx.fillStyle = "#FFFFFF";
                 if (!crash){
                     ctx.fillText("Score: " + score, 20, 40);
+                    ctx.fillText("Phase: " + phase, 20, 80);
                 }
                 else{
                     ctx.fillStyle = "#000000";
@@ -192,25 +255,6 @@
                 ctx.arc(cX, cY, cR, 0, 2 * Math.PI);
                 ctx.fill();
             }
-            
-            var obstacleX = [];
-            var obstacleY = [];
-            var crash = false;
-            var score = 0;
-            var sX = 6;
-            var sY = 6;
-            var sFall = 1.5;
-            var sAccel = 0;
-            var w = 600;
-            var h = 750;
-            var rW = 25;
-            var rH = 25;
-            var oW = 35;
-            var oH = 35;
-            var cX = 300;
-            var cY = 300;
-            var cR = 15;
-            var img1 = document.getElementById("img1");
             
             function sound(src) {
                 this.sound = document.createElement("audio");
