@@ -150,7 +150,7 @@
                     clearMove();
                     showScore();
                     if (score<5 && score%2==0){
-                        ctx.drawImage(img2, 50, 400);
+                        ctx.drawImage(img2, 200, 400);
                     }
                     ctx.fillStyle = "#000000";
                }
@@ -169,7 +169,7 @@
                 for (i=0; i<obstacleX.length; i+=1){
                     obstacleY[i] = obstacleY[i] + sFall;
                     contact(i);
-                    if (!crash){
+                    if (!crash && obstacleY[i]<650){
                         ctx.fillRect(obstacleX[i], obstacleY[i], oW, oH);
                     }
                 }
